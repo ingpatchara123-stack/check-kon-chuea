@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f5f7f2" />
+    <meta name="description" content="เว็บต้นแบบเพื่อช่วยสังเกตข้อความ SMS และแชตที่อาจมีความเสี่ยง พร้อมอธิบายจุดที่ควรระวังและวิธีตรวจสอบอย่างปลอดภัย" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="th_TH" />
+    <meta property="og:title" content="เช็กก่อนเชื่อ — ตัวช่วยสังเกตข้อความน่าสงสัย" />
+    <meta property="og:description" content="วางข้อความเพื่อดูสัญญาณที่ควรระวัง เว็บต้นแบบเพื่อการศึกษา ไม่ยืนยันว่าข้อความเป็นมิจฉาชีพ" />
+    <title>เช็กก่อนเชื่อ | ตัวช่วยสังเกตข้อความน่าสงสัย</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="เช็กก่อนเชื่อ หน้าแรก"><span class="brand-icon">✓</span><span>เช็กก่อน<span class="brand-accent">เชื่อ</span></span></a>
+      <div class="top-controls"><button id="theme-toggle" class="theme-toggle" type="button" aria-label="เปลี่ยนเป็นธีมมืด"><span class="theme-icon" aria-hidden="true">☾</span><span class="theme-label">ธีมมืด</span></button><a class="top-link" href="#how-it-works">วิธีใช้งาน <span aria-hidden="true">↗</span></a></div>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="live-dot"></span> ผู้ช่วยสังเกตข้อความที่ควรระวัง</div>
+          <h1 id="hero-title">อ่านข้อความให้ดี<br />ก่อน<span class="serif-accent">เชื่อ</span>และคลิก</h1>
+          <p class="hero-description">วาง SMS หรือข้อความที่ได้รับ เราจะช่วยชี้จุดที่น่าสงสัยและแนะนำวิธีตรวจสอบอย่างปลอดภัย</p>
+          <div class="trust-note"><span class="shield">◇</span><span><strong>ข้อความอยู่กับคุณ</strong><br />ต้นแบบนี้ประมวลผลในเบราว์เซอร์ ไม่ส่งหรือบันทึกข้อความ</span></div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+          <div class="art-card"><div class="art-card-top"><span class="art-avatar">S</span><span><b>ข้อความเข้า</b><small>เมื่อสักครู่</small></span><span class="art-dots">···</span></div><div class="art-bubble">บัญชีของคุณจะถูกระงับ<br />ยืนยันข้อมูล <i>คลิกที่นี่</i></div><div class="art-alert"><span>!</span> พบจุดที่ควรตรวจสอบ</div></div>
+          <div class="sparkle sparkle-a">✳</div><div class="sparkle sparkle-b">✦</div><div class="art-caption">หยุด · สังเกต · ตรวจสอบ</div>
+        </div>
+      </section>
+
+      <section class="checker" aria-label="ตรวจสอบข้อความ">
+        <div class="checker-heading"><div><span class="step-label">เริ่มตรวจสอบ <span>01 / 02</span></span><h2>ได้รับข้อความอะไรมา?</h2></div><span class="lock-label">⌑ ประมวลผลบนอุปกรณ์นี้</span></div>
+        <label class="sr-only" for="message-input">วางข้อความ SMS หรือข้อความที่ต้องการตรวจสอบ</label>
+        <textarea id="message-input" maxlength="5000" placeholder="วางข้อความ SMS หรือแชตที่นี่…\n\nตัวอย่าง: พัสดุของคุณจัดส่งไม่สำเร็จ กรุณาชำระค่าธรรมเนียม 12 บาทที่ ..." aria-describedby="input-help"></textarea>
+        <div class="input-meta"><span id="input-help">ไม่ต้องใส่ชื่อ เบอร์โทร หรือข้อมูลส่วนตัว</span><span id="char-count">0 / 5,000</span></div>
+        <div class="checker-actions"><button id="analyze-button" class="analyze-button"><span>วิเคราะห์ข้อความ</span><span class="button-arrow">↗</span></button><button id="clear-button" class="clear-button" type="button">ล้างข้อความ</button></div>
+        <div class="sample-area"><span class="sample-label">ลองดูตัวอย่าง</span><button class="sample-chip" type="button" data-sample="parcel">📦 แจ้งพัสดุ</button><button class="sample-chip" type="button" data-sample="bank">🏦 แอบอ้างธนาคาร</button><button class="sample-chip" type="button" data-sample="normal">💬 ข้อความทั่วไป</button></div>
+        <div id="result" class="result" aria-live="polite" hidden></div>
+      </section>
+
+      <section class="url-checker" aria-labelledby="url-title">
+        <div class="checker-heading"><div><span class="step-label">ตรวจสอบลิงก์ <span>URL</span></span><h2 id="url-title">มีลิงก์ที่ไม่แน่ใจไหม?</h2></div><span class="lock-label">⌑ ตรวจรูปแบบในเบราว์เซอร์</span></div>
+        <p class="url-intro">วาง URL เพื่อเช็กสัญญาณเตือนจากตัวลิงก์ ระบบจะไม่เปิดเว็บไซต์หรือส่ง URL ไปที่อื่น</p>
+        <form id="url-form" class="url-form" novalidate><label class="sr-only" for="url-input">URL ที่ต้องการตรวจสอบ</label><input id="url-input" type="text" inputmode="url" autocomplete="url" maxlength="2000" placeholder="เช่น https://example.com/login" /><button class="analyze-button" type="submit"><span>ตรวจ URL</span><span class="button-arrow">↗</span></button></form>
+        <div id="url-result" class="url-result" aria-live="polite" hidden></div>
+        <p class="url-caution">การตรวจนี้ดูเฉพาะรูปแบบ URL ไม่ได้เช็กเนื้อหาเว็บหรือฐานข้อมูลภัยคุกคาม และ URL ที่ดูปกติก็อาจเป็นอันตรายได้ อย่ากดลิงก์เพื่อทดลอง</p>
+      </section>
+      <section class="how" id="how-it-works"><div class="section-intro"><span class="step-label">ใช้เวลาไม่ถึงนาที</span><h2>เช็กอย่างมีสติ<br />ทีละขั้นตอน</h2><p>ผลวิเคราะห์เป็นเพียงตัวช่วยประกอบการตัดสินใจ</p></div><div class="steps"><article><span class="step-number">01</span><h3>วางข้อความ</h3><p>คัดลอก SMS หรือข้อความที่สงสัยมาวาง โดยไม่ต้องใส่ข้อมูลส่วนตัว</p></article><article><span class="step-number">02</span><h3>ดูสัญญาณ</h3><p>อ่านระดับความเสี่ยง คำหรือรูปแบบที่ระบบพบ และเหตุผลประกอบ</p></article><article><span class="step-number">03</span><h3>ตรวจสอบเอง</h3><p>ติดต่อหน่วยงานผ่านช่องทางทางการที่ค้นหาเอง อย่ากดลิงก์ในข้อความ</p></article></div></section>
+
+      <aside class="disclaimer"><span class="disclaimer-icon">i</span><p><strong>เกี่ยวกับต้นแบบนี้</strong><br />ต้นแบบนี้จับคู่คำและรูปแบบกับกฎที่ระบุไว้ แล้วแสดงข้อความจริงที่ตรงกับกฎ ไม่ได้ใช้ AI หรือฐานข้อมูลภัยคุกคามออนไลน์ จึงอาจเตือนผิดหรือพลาดได้ ผลที่ไม่พบสัญญาณไม่ได้ยืนยันว่าปลอดภัย</p></aside>
+    </main>
+    <footer><a class="brand footer-brand" href="#top"><span class="brand-icon">✓</span><span>เช็กก่อน<span class="brand-accent">เชื่อ</span></span></a><span>ต้นแบบโครงงานวิจัย · ใช้เพื่อการศึกษา</span><a href="README.md">ข้อมูลโครงงาน</a></footer>
+  </body>
+</html>

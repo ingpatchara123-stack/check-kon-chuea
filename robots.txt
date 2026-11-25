@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ingpatchara123-stack.github.io/check-kon-chuea/sitemap.xml
